@@ -231,11 +231,12 @@ export default function Login() {
                         </form>
 
                         <div className="login-demo-hint" style={{ textAlign: 'left', lineHeight: 1.8 }}>
-                            <strong>Demo accounts (Live DB):</strong><br />
-                            Resident: <code>user@qtrade.test</code> / <code>password123</code><br />
-                            Admin: <code>admin@qtrade.test</code> / <code>admin1234</code><br />
-                            <em>(If no accounts exist, please use Register first)</em>
+                            <strong>Vercel Demo Accounts:</strong><br />
+                            Admin: <code>admin@qtrade.com</code> / <code>AdminQ-Trade2025!</code><br />
+                            Resident: <code>user@qtrade.com</code> / <code>UserQ-Trade2025!</code><br />
+                            <em>(Or use 'Create account' to make a fresh one!)</em>
                         </div>
+
 
                         <div style={{ marginTop: 16, textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                             Don't have an account?{' '}

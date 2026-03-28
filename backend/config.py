@@ -20,8 +20,9 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 60
 
     # ── CORS ──────────────────────────────────────────────────────────────────
-    # Comma-separated list of allowed origins
-    allowed_origins: str = "http://localhost:5173"
+    # Comma-separated list of allowed origins. Use '*' for public demo.
+    allowed_origins: str = "*"
+
 
     # ── Environment ───────────────────────────────────────────────────────────
     environment: str = "development"
