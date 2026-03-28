@@ -1,0 +1,16 @@
+user_id,name,email,wallet_address,role,is_admin,panel_capacity_kw,battery_capacity_kwh,base_consumption_kwh,location_lat,location_lng
+demo-000,Demo Google User,demo.google@gmail.com,0x9ad63d1488594068be4aea6811a6dadd,both,False,4.6,2.7,36.1,30.2675,-97.7431
+alex-123,Alex Johnson,alex@neighborhood.com,0xeebb6bcc77c74785aa2cef5cb5e7afd4,both,False,7.9,4.6,19.1,30.2675,-97.743
+maria-456,Maria Chen,maria@neighborhood.com,0x92a2a02a06044964bbe65ead71cd14e4,buyer,False,0.0,0.0,33.1,30.268,-97.7425
+jamal-789,James Park,james@neighborhood.com,0xd7ce15ad611e49e9b10cda0ca54c6b8e,seller,False,6.5,7.6,36.2,30.267,-97.744
+sarah-321,Sarah Lee,sarah@neighborhood.com,0x6f36b929175e4200a9a37495a2f962fe,buyer,False,0.9,1.3,33.4,30.2665,-97.7435
+david-654,David Kim,david@neighborhood.com,0xfd06e847694849fcbbf54de8a0fb06ff,both,False,7.2,8.1,35.1,30.2685,-97.742
+emily-987,Emily Wong,emily@neighborhood.com,0x455856bc17ce4147a284fbcec0b3975b,seller,False,10.5,5.4,22.9,30.266,-97.7445
+admin-111,Admin User,admin@neighborhood.com,0x6cb32a29805b470b821c7839834ac741,both,True,6.3,6.6,39.7,30.2672,-97.7431
+c2ad566b,Neighbor 8,neighbor8@neighborhood.com,0x24b435a4436445ffb89dfc12ce8f2a8e,both,False,4.2,4.4,24.5,30.268804114533463,-97.72682894479956
+05135860,Neighbor 9,neighbor9@neighborhood.com,0xca2a1b522f8643659dce4e20d0e0a6e9,both,False,5.0,4.4,36.8,30.282224921688755,-97.7313364281054
+44911cb6,Neighbor 10,neighbor10@neighborhood.com,0x0dbe8c3a40244ccc9bd1daffc894004b,both,False,5.2,4.7,32.5,30.26441534231033,-97.7345187836656
+242b6882,Neighbor 11,neighbor11@neighborhood.com,0xaaf0f28e18fe4b49bd2d5cb616fa81e1,both,False,6.9,6.7,15.9,30.26692936902788,-97.74393858045785
+a13e4ca2,Neighbor 12,neighbor12@neighborhood.com,0xf2e66e6b6560422983e296d9f0ee6ca7,buyer,False,0.7,1.0,33.8,30.27862589942147,-97.73350159577043
+f02caa0b,Neighbor 13,neighbor13@neighborhood.com,0x741b33369c544c22b3374438eca94796,both,False,5.7,4.3,17.6,30.24974506155185,-97.75323382802665
+89df020f,Neighbor 14,neighbor14@neighborhood.com,0x230e610ac5d44c539463021afa99c2a2,both,False,5.9,4.3,26.4,30.263882609821913,-97.76275447602279

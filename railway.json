@@ -1,0 +1,10 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "dockerfilePath": "Dockerfile.backend"
+  },
+  "deploy": {
+    "startCommand": "python backend/scripts/seed_admin.py && gunicorn backend.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000",
+    "restartPolicyType": "ON_FAILURE"
+  }
+}

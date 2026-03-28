@@ -1,0 +1,2 @@
+Python 3.13 (Resurgence) -> D:/Resurgence/.venv/Scripts/python.exe
+Python 3.13 (Resurgence) (2) -> D:/Resurgence/venv/Scripts/python.exe

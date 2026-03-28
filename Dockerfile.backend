@@ -1,0 +1,44 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Dockerfile.backend — Q-Trade Python/FastAPI backend
+# Multi-stage: build (with test deps) → production (lean image)
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Stage 1: Build / dependency resolution ─────────────────────────────────
+FROM python:3.11-slim AS builder
+
+WORKDIR /app
+COPY backend/requirements.txt .
+
+# Install all deps into a prefix we can copy cleanly
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir gunicorn==23.0.0
+
+# ── Stage 2: Production image ───────────────────────────────────────────────
+FROM python:3.11-slim AS production
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    ENVIRONMENT=production
+
+WORKDIR /app
+
+# Copy installed packages from builder
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
+
+# Copy application source
+COPY backend/ ./backend/
+
+# Create persistent data directory for SQLite WAL files
+RUN mkdir -p /app/data && chmod 777 /app/data
+
+# Expose port
+EXPOSE 8000
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+
+# Entrypoint: seed admin, then start gunicorn
+CMD ["sh", "-c", "python backend/scripts/seed_admin.py && gunicorn backend.main:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --access-logfile - --error-logfile -"]

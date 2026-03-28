@@ -1,0 +1,174 @@
+.trade-ticker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: rgba(13, 22, 40, 0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    z-index: 200;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* "LIVE TRADES" badge */
+.ticker-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--teal-400);
+    background: rgba(13, 22, 40, 0.98);
+    border-right: 1px solid var(--border);
+    height: 100%;
+    white-space: nowrap;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Pulsing live dot */
+.ticker-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--teal-400);
+    box-shadow: 0 0 6px var(--teal-400);
+    animation: live-pulse 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes live-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.75);
+    }
+}
+
+/* Scrolling track */
+.ticker-track-wrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Fade edges */
+.ticker-track-wrap::before,
+.ticker-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.ticker-track-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(13, 22, 40, 0.95), transparent);
+}
+
+.ticker-track-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(13, 22, 40, 0.95), transparent);
+}
+
+.ticker-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: ticker-scroll 60s linear infinite;
+    will-change: transform;
+}
+
+.ticker-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Individual ticker item */
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    padding: 0 10px;
+}
+
+.ticker-dot {
+    font-size: 0.7rem;
+}
+
+.ticker-seller {
+    color: var(--amber-400);
+    font-weight: 600;
+}
+
+.ticker-arrow {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.ticker-buyer {
+    color: var(--teal-400);
+    font-weight: 600;
+}
+
+.ticker-sep {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+}
+
+.ticker-kwh {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.ticker-price {
+    color: var(--green-400);
+    font-weight: 500;
+}
+
+.ticker-dist {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.ticker-time {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.ticker-divider {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: var(--border);
+    margin: 0 12px;
+    flex-shrink: 0;
+}

@@ -1,0 +1,14 @@
+{
+  "framework": "vite",
+  "name": "q-trade",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://qtrade-api.up.railway.app/api/$1"
+    },
+    {
+       "source": "/(.*)",
+       "destination": "/index.html"
+    }
+  ]
+}
