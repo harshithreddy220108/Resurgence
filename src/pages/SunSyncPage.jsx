@@ -33,8 +33,9 @@ export default function SunSyncPage() {
     // Resolve DB user once
     useEffect(() => {
         if (!localUser) return;
-        const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
+        const API_BASE = import.meta.env.VITE_API_BASE || '';
         fetch(`${API_BASE}/api/users/by-email/${encodeURIComponent(localUser.email)}`)
+
 
             .then(r => r.ok ? r.json() : null)
             .then(u => { if (u) setDbUser(u); })
@@ -55,11 +56,12 @@ export default function SunSyncPage() {
             } catch (_) {}
 
             const qs = lat ? `?lat=${lat}&lng=${lng}` : '';
-            const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
+            const API_BASE = import.meta.env.VITE_API_BASE || '';
             const [todayRes, weekRes] = await Promise.all([
                 fetch(`${API_BASE}/api/forecast/${dbUser.id}${qs}`),
                 fetch(`${API_BASE}/api/forecast/weekly/${dbUser.id}${qs}`)
             ]);
+
 
             if (todayRes.ok) setForecast(await todayRes.json());
             if (weekRes.ok) {

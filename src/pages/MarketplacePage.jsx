@@ -148,8 +148,9 @@ export default function MarketplacePage() {
                 })
             });
             // Refresh order book
-            const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8000';
+            const API_BASE = import.meta.env.VITE_API_BASE || '';
             const listRes = await fetch(`${API_BASE}/api/listings?status=open`);
+
 
             if (listRes.ok) {
                 const data = await listRes.json();
