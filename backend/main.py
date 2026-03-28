@@ -28,7 +28,9 @@ from backend.auth import (
     hash_password, verify_password, create_access_token,
     get_current_user, get_current_user_optional, require_admin
 )
-from backend.ai import weather, solar_regression, quantum_optimizer
+# Deferred imports for faster serverless startup
+# from backend.ai import weather, solar_regression, quantum_optimizer
+
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -352,8 +354,10 @@ def get_solar_forecast(
     fetch_lat = lat if lat is not None else user.location_lat
     fetch_lng = lng if lng is not None else user.location_lng
 
+    from backend.ai import weather, solar_regression
     live_weather = weather.fetch_daily_weather(lat=fetch_lat, lng=fetch_lng)
     predicted_kwh = solar_regression.predict_generation(panel_kw, live_weather)
+
 
     curve_weights = [0.02, 0.06, 0.12, 0.17, 0.22, 0.25, 0.26, 0.25, 0.22, 0.17, 0.12, 0.06, 0.02]
     total_weight = sum(curve_weights)
@@ -439,7 +443,9 @@ def _run_qaoa_task(job_id: str, bids_data: list, asks_data: list, users_dict: di
     _optimize_jobs[job_id]["status"] = "running"
     db = SessionLocal()
     try:
+        from backend.ai import quantum_optimizer
         matched_pairs = quantum_optimizer.run_qaoa_matching(bids_data, asks_data, users_dict)
+
         transactions_created = []
 
         for (bid_dict, ask_dict) in matched_pairs:
@@ -524,8 +530,10 @@ def optimize_market(
     )
     logger.info(f"QAOA job {job_id} queued: {len(bids_data)} bids × {len(asks_data)} asks")
 
+    from backend.ai import quantum_optimizer
     # Also run synchronously to return immediate results (background keeps DB in sync)
     matched_pairs = quantum_optimizer.run_qaoa_matching(bids_data, asks_data, users_dict)
+
     transactions_created = []
     for (bid_dict, ask_dict) in matched_pairs:
         matched_kwh = min(bid_dict["kwh_amount"], ask_dict["kwh_amount"])
