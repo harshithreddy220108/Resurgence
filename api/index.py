@@ -1,7 +1,16 @@
 import sys
 import os
 
-# Add the project root to the path so we can import 'backend'
+# Add project root for Vercel
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.main import app
+from backend.scripts.seed_admin import seed
+
+# Auto-seed the database for the demo
+try:
+    seed()
+except Exception:
+    pass
+
+
