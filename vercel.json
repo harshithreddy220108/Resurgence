@@ -1,6 +1,11 @@
 {
   "framework": "vite",
   "name": "q-trade",
+  "functions": {
+    "api/*.py": {
+      "runtime": "vercel-python@1.3.0"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -12,3 +17,4 @@
     }
   ]
 }
+
