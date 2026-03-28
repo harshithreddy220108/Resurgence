@@ -12,7 +12,8 @@ logger = logging.getLogger("qtrade.config")
 
 class Settings(BaseSettings):
     # ── Database ──────────────────────────────────────────────────────────────
-    database_url: str = "sqlite:///./backend/qtrade.db"
+    database_url: str = "sqlite:////tmp/qtrade.db"
+
 
     # ── Auth ──────────────────────────────────────────────────────────────────
     secret_key: str = "change-me-in-production"
