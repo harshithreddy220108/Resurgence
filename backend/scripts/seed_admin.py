@@ -33,6 +33,7 @@ def seed():
             return
 
         admin = models.User(
+            id="admin-001",
             name=settings.admin_name,
             email=settings.admin_email,
             hashed_password=hash_password(settings.admin_password),
@@ -42,6 +43,7 @@ def seed():
             location_lat=30.2672,
             location_lng=-97.7431,
         )
+
         db.add(admin)
         db.commit()
         print(f"🌟 Admin user created: {settings.admin_email}")
